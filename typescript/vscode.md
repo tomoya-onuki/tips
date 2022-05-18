@@ -24,21 +24,24 @@ mkdir src
 
 4. tsconfig.jsonを作る
 ```
-$ npx tsc --init
+npx tsc --init
 ```
 
-5. webpack.config.jsを用意する（コピーする）
-6. VSCodeにLive Serverもインストールしておくと便利
-
-## ディレクトリ構成
-
-### dist
-Webサーバーで公開するファイル（HTMLとCSS）をここに置く。
-TypeScriptのプログラムをJavaScriptに変換したmain.jsがここに作られる。
-実行時に必要なファイルはこのファルダの中のファイルだけ。
-
-### src
-TypeScriptのソースプログラム（main.tsなど）をここに置く。
+5. `webpack.config.js`を用意する（コピーする）
+```
+{
+  "compilerOptions": {
+    "target": "ES2016",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": true,
+    "lib": [
+      "ES2020",
+      "DOM"
+    ]
+  }
+}
+```
 
 ## 開発の進め方
 
