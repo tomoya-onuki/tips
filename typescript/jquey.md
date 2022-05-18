@@ -1,7 +1,7 @@
 
 # TypeScriptでjqueryを使う
 
-##　セットアップ
+## セットアップ
 
 ```
 npm install jquery --save
