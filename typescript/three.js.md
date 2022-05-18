@@ -85,19 +85,15 @@ module.exports = {
   };
 ```
 
-6. tsファイルの作成
+
+## 開発
+1. インポート
 ```
 import * as THREE from "three";
-declare var require: any;
-import $ = require('jquery');
-
-$(function(){
-  /* コード */
-});
 ```
 
 
-7. htmlファイルの作成
+1. htmlファイルの作成
 ```
 <!DOCTYPE html>
 <html>
@@ -113,12 +109,12 @@ $(function(){
 </html>
 ```
 
-8. コンパイル
+1. コンパイル
 ```
 npm run build
 ```
 
-9. 実行
+1. 実行
 ```
 live server でGoLiveする
 ```
