@@ -8,6 +8,7 @@
 - [TypeScriptとThree.jsでWebGL開発](./typescript/three.js.md)
 - [TypeScriptでjqueryを使う](./typescript/jquey.md)
 - [TypeScriptでFFTをする](./typescript/fft.js.md)
+- [TypeScriptで色操作ライブラリ(Chroma.js)を使う](./typescript/chroma.js.md)
 
 ## Javaを用いたGUI開発のtips
 - [vscodeでJavaFX開発](java/javaFX.md)
