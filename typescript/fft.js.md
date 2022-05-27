@@ -41,3 +41,6 @@ console.log(both);
 {frequency: 11025, magnitude: 0}, 
 {frequency: 16537.5, magnitude: 1.0823922002923938}]
 ```
+
+## 参考
+1. https://github.com/vail-systems/node-fft
