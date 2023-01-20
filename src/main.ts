@@ -1,52 +1,51 @@
-import * as THREE from "three";
+import dayjs, { Dayjs } from 'dayjs';
+// UTCを使うためのおまじない
+import utc from "dayjs/plugin/utc";
+dayjs.extend(utc);
+// タイムゾーンを使うためのおまじない
+import timezone from "dayjs/plugin/timezone";
+dayjs.extend(timezone);
 
 window.addEventListener('load', () => {
     init();
 }, false);
 
+function init(): void {
+    let time = '2020/06/01 12:13:42';
 
-let cvsWidth: number = 600;
-let cvsHeight: number = 600;
-let renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer({ alpha: true });
-let scene: THREE.Scene = new THREE.Scene();
-let camera: THREE.PerspectiveCamera = new THREE.PerspectiveCamera(50, cvsWidth / cvsHeight, 1, 2000);
-let cube: THREE.Mesh;
+    let utc0 = dayjs.tz(time, 'UTC');
+    let cet0 = dayjs.tz(time, 'CET');
+    let jst0 = dayjs.tz(time, 'Asia/Tokyo');
+    let utc0Millis = utc0.valueOf();
+    let cet0Millis = cet0.valueOf();
+    let jst0Millis = jst0.valueOf();
+    let utc0Str = utc0.format('YYYY/MM/DD HH:MM:ss');
+    let cet0Str = cet0.format('YYYY/MM/DD HH:MM:ss');
+    let jst0Str = jst0.format('YYYY/MM/DD HH:MM:ss');
+   
+    let utc1 = dayjs(time).tz('UTC');
+    let cet1 = dayjs(time).tz('CET');
+    let jst1 = dayjs(time).tz('Asia/Tokyo');
+    let utc1Millis = utc1.valueOf();
+    let cet1Millis = cet1.valueOf();
+    let jst1Millis = jst1.valueOf();
+    let utc1Str = utc1.format('YYYY/MM/DD HH:MM:ss');
+    let cet1Str = cet1.format('YYYY/MM/DD HH:MM:ss');
+    let jst1Str = jst1.format('YYYY/MM/DD HH:MM:ss');
 
-function init() {
-    let elem = <HTMLElement>document.querySelector('body');
-    elem.append(renderer.domElement);
-    camera.position.set(50, 50, 50);
-    camera.lookAt(new THREE.Vector3(0, 0, 0));
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(cvsWidth, cvsHeight);
-    camera.aspect = cvsWidth / cvsHeight;
-    camera.updateProjectionMatrix();
+    console.log('dayjsオブジェクトを生成する際1タイムゾーンを指定する場合')
+    console.table([
+        ['Time Zone', 'UNIX時間(msec)', '日付'],
+        ['UTC', utc0Millis, utc0Str],
+        ['CET', cet0Millis, cet0Str],
+        ['JST', jst0Millis, jst0Str],
+    ]);
 
-    const light = new THREE.DirectionalLight(0xffffff);
-    light.position.set(1, 1, 1);
-    scene.add(light);
-
-    const axes = new THREE.AxesHelper(10);
-    scene.add(axes);
-
-    draw();
-    render();
-}
-
-function render() {
-    requestAnimationFrame(render);
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-    renderer.render(scene, camera);
-}
-
-function draw() {
-    const geometry = new THREE.BoxGeometry(10, 10, 10);
-    const material = new THREE.MeshLambertMaterial({
-        color: new THREE.Color('#4da9ff'),
-        transparent: true,
-        opacity: 0.5
-    });
-    cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+    console.log('dayjsオブジェクトを生成したのちに、タイムゾーンを指定する場合')
+    console.table([
+        ['Time Zone', 'UNIX時間(msec)', '日付'],
+        ['UTC', utc1Millis, utc1Str],
+        ['CET', cet1Millis, cet1Str],
+        ['JST', jst1Millis, jst1Str],
+    ]);
 }
